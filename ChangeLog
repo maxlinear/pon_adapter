@@ -1,5 +1,15 @@
 NEXT VERSION
 
+v2.1.0 2025.04.29
+
+- PONRTSYS-14628: add PA IF version
+- PONRTSYS-13291: OMCI ME 344/454 - (Enhanced) TC PMHD - Feature implementation
+  + Changes to PON adapter in order to support retrieval of LODS counters.
+
+v2.0.0 2024.08.20
+
+- PONRTSYS-14347: License change from MxL to BSD (2-clause)
+
 v1.18.0 2024.04.24
 
 - PONRTSYS-13674: name change in pa_management_ds_cnt:

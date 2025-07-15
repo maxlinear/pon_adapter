@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.65])
-AC_INIT([PON_ADAPTER], [1.18.0], [pon_adapter])
+AC_INIT([PON_ADAPTER], [2.1.0], [pon_adapter])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([-Wno-portability tar-pax])

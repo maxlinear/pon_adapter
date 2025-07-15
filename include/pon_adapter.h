@@ -39,6 +39,65 @@ extern "C" {
  *  @{
  */
 
+/** PON-Adapter Interface (PA IF) version - Interface revision */
+#define PA_IF_VERSION_REVISION		1
+/** PA IF version - feature
+ * Feature enhancements which are backwards compatible to older OMCI-daemon
+ * binaries of the same revision
+ */
+#define PA_IF_VERSION_FEATURE		0
+/** PA IF version, build number - step */
+#define PA_IF_VERSION_STEP		0
+
+/** PA IF version as number */
+#define PA_IF_VER_NUMBER \
+	((PA_IF_VERSION_REVISION << 16) | \
+	(PA_IF_VERSION_FEATURE << 8) | \
+	(PA_IF_VERSION_STEP))
+
+#define GET_PA_IF_REVISION(version) (((version) >> 16) & (0xFF))
+#define GET_PA_IF_FEATURE(version) (((version) >> 8) & (0xFF))
+#define GET_PA_IF_STEP(version) (((version) >> 0) & (0xFF))
+
+/** PA IF 1st version is used for backwards-compatibility checks */
+#define PA_IF_VERSION_1ST_REVISION	1	/** Interface revision */
+#define PA_IF_VERSION_1ST_FEATURE	0	/** feature */
+#define PA_IF_VERSION_1ST_STEP		0	/** build number - step */
+/** PA IF 1st version as number */
+#define PA_IF_1ST_VER_NUMBER \
+	((PA_IF_VERSION_1ST_REVISION << 16) | \
+	(PA_IF_VERSION_1ST_FEATURE << 8) | \
+	(PA_IF_VERSION_1ST_STEP))
+/** ========================================================================
+ * PON adapter interface version checks
+ * =========================================================================
+ */
+/**
+ * Version Check - equal with the given version
+ */
+#define PA_IF_VERSION_CHECK_EQ(version) \
+	((GET_PA_IF_REVISION(version) == (uint32_t)PA_IF_VERSION_REVISION) && \
+	(GET_PA_IF_FEATURE(version) == (uint32_t)PA_IF_VERSION_FEATURE) && \
+	(GET_PA_IF_STEP(version) == (uint32_t)PA_IF_VERSION_STEP))
+
+/**
+ * Compatibility Check
+ * verifies whether PA Interface versions of omci-daemon (as used during
+ * compilation of the binary) and the lower layer modules are compatible
+ * Decision criteria:
+ * 1. revison number must match (mismatch indicates major deltas)
+ * 2. feature number of the omci-daemon must be equal or lower than lower
+ *    layer module version
+ * If the versions are not identical, but compatible the interface is still
+ * operable. In this case
+ * - all features of the omci-daemon are supported, but
+ * - feature enhancement of the lower layer modules may not be usable, if the
+ *   used version of the omci-daemon does not support these features
+ */
+#define PA_IF_VERSION_CHECK_COMPATIBLE(version) \
+	((GET_PA_IF_REVISION(version) == (uint32_t)PA_IF_VERSION_REVISION) && \
+	(GET_PA_IF_FEATURE(version) <= (uint32_t)PA_IF_VERSION_FEATURE))
+
 /* Macro to check if the given params form a valid pointer chain */
 #define PA_EXISTS1(ptr) \
 	(ptr)
@@ -257,13 +316,17 @@ struct pa_ops {
 
 /** Prepare function definition for lower layer operations structure
  * registration.
+ * \param[in] hl_handle_legacy Pointer must be set to NULL.
+ * \param[out] pa_ops PON Adapter operation.
+ * \param[out] ll_handle Low-level handle.
  * \param[in] hl_handle High-level handle.
- * \param[in] pa_ops PON Adapter operation.
- * \param[in] ll_handle Low-level handle.
+ * \param[in] if_version PON-Adapter interface version used by calling function.
  */
-enum pon_adapter_errno pa_ll_register_ops(void *hl_handle,
-				 const struct pa_ops *pa_ops,
-				 void **ll_handle);
+enum pon_adapter_errno pa_ll_register_ops(void *hl_handle_legacy,
+					  const struct pa_ops *pa_ops,
+					  void **ll_handle,
+					  void *hl_handle,
+					  uint32_t if_version);
 
 /**
  *	Set the PON Adapter debug level.

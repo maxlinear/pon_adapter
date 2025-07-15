@@ -30,6 +30,7 @@ stamp-h1
 *.h.in
 libpon_la-*
 *.la
+*.lo
 
 ipkg*/
 
@@ -69,7 +70,7 @@ doc/html/
 doc/xml/
 
 # generated binaries
-pon_adapter
+self_test/pon_adapter
 
 AUTHORS
 COPYING

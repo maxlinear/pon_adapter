@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- *  Copyright (c) 2022 MaxLinear Corporation
+ *  Copyright (c) 2022 - 2025 MaxLinear, Inc.
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
  * this software module.
@@ -124,7 +124,22 @@ struct pa_enhanced_tc_pmhd_ops {
 	 */
 	enum pon_adapter_errno
 	(*enhanced_tc_counters_get)(void *ll_handle,
-			    struct pa_enhanced_tc_counters *props);
+				    struct pa_enhanced_tc_counters *props);
+
+	/**
+	 * Get XG-PON LODS counters.
+	 *
+	 * \param[in] ll_handle Lower layer handle
+	 * \param[out] param Pointer to a structure as defined
+	 * by \ref pa_enhanced_tc_counters.
+	 *
+	 * \return Return value as follows:
+	 * - PON_ADAPTER_SUCCESS: If successful
+	 * - Other: An error code in case of error.
+	 */
+	enum pon_adapter_errno
+	(*lods_counters_get)(void *ll_handle,
+			     struct pa_enhanced_tc_counters *props);
 };
 
 /** @} */

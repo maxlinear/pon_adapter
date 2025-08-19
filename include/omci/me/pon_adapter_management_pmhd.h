@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- *  Copyright (c) 2022 - 2024 MaxLinear Corporation
+ *  Copyright (c) 2022 - 2024 MaxLinear, Inc.
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
  * this software module.

@@ -1,5 +1,10 @@
 NEXT VERSION
 
+v2.1.1 2025.06.18
+
+- PONRTSYS-14890: Fix Maxlinear copyright comments
+- PONRTSYS-14834: Update SFF Compliance decoding
+
 v2.1.0 2025.04.29
 
 - PONRTSYS-14628: add PA IF version

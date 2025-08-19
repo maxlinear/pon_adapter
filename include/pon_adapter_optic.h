@@ -235,7 +235,8 @@ struct pa_optic_properties {
 	 *  - 5: V11_0, SFF-8472 Rev 11.0
 	 *  - 6: V11_3, SFF-8472 Rev 11.3
 	 *  - 7: V11_4, SFF-8472 Rev 11.4
-	 *  - 8: V12_0, SFF-8472 Rev 12.0
+	 *  - 8: V12_3, SFF-8472 Rev 12.3
+	 *  - 9: V12_4, SFF-8472 Rev 12.4
 	 *  - Others: Reserved.
 	 */
 	uint32_t compliance;

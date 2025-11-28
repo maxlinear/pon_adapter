@@ -40,7 +40,7 @@ extern "C" {
  */
 
 /** PON-Adapter Interface (PA IF) version - Interface revision */
-#define PA_IF_VERSION_REVISION		1
+#define PA_IF_VERSION_REVISION		2
 /** PA IF version - feature
  * Feature enhancements which are backwards compatible to older OMCI-daemon
  * binaries of the same revision
@@ -85,7 +85,7 @@ extern "C" {
  * verifies whether PA Interface versions of omci-daemon (as used during
  * compilation of the binary) and the lower layer modules are compatible
  * Decision criteria:
- * 1. revison number must match (mismatch indicates major deltas)
+ * 1. revision number must match (mismatch indicates major deltas)
  * 2. feature number of the omci-daemon must be equal or lower than lower
  *    layer module version
  * If the versions are not identical, but compatible the interface is still

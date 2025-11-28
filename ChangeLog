@@ -1,5 +1,12 @@
 NEXT VERSION
 
+v2.1.2 2025.10.28
+
+- PONRTSYS-15096: PON adapter interfaces for 5 attributes of Dot1X port extension package
+  + ME 290 extended by 5 read-only attributes
+  + PA IF version updated to 2.0.0
+- PONRTSYS-14973: Add codespell config and fix spelling in code
+
 v2.1.1 2025.06.18
 
 - PONRTSYS-14890: Fix Maxlinear copyright comments

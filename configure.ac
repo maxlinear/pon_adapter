@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.65])
-AC_INIT([PON_ADAPTER], [2.1.1], [pon_adapter])
+AC_INIT([PON_ADAPTER], [2.1.2], [pon_adapter])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([-Wno-portability tar-pax])
@@ -27,7 +27,7 @@ LT_INIT
 
 # Check for git and a git repo.
 if test -e "$srcdir/.git"; then
-        # Hash of lastest tag
+        # Hash of latest tag
         latest_tag=`git -C "$srcdir" describe --tags --abbrev=0`
 
         # Number of commits until latest tag
@@ -35,10 +35,13 @@ if test -e "$srcdir/.git"; then
                 EXTRA_VERSION=`git -C "$srcdir" rev-list HEAD "^$latest_tag" --count`
         fi
 
-        # Check if repo is dirty
+        # Add the git commit hash or dirty suffix
         if test `git -C "$srcdir" diff-index -p HEAD | wc -l` -gt 0 ; then
-                EXTRA_VERSION="$EXTRA_VERSION-dirty"
+                EXTRA_SUFFIX="dirty"
+        else
+                EXTRA_SUFFIX="g`git -C "$srcdir" rev-parse --short=7 HEAD`"
         fi
+        EXTRA_VERSION="$EXTRA_VERSION-$EXTRA_SUFFIX"
 fi
 
 if test -n "$EXTRA_VERSION"; then

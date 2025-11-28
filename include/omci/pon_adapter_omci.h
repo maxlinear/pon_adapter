@@ -167,7 +167,7 @@ struct pa_omci_me_ops {
 	const struct pa_priority_queue_ops *priority_queue;
 	/** Pointer to the vendor emop operations structure */
 	const struct pon_adapter_vendor_emop_ops *vendor_emop;
-	/** Pointer to the SIP Agent Config Data opertions structure */
+	/** Pointer to the SIP Agent Config Data operations structure */
 	const struct pa_sip_agent_config_data_ops *sip_agent_config_data;
 	/** Pointer to the SIP User Data operations structure */
 	const struct pa_sip_user_data_ops *sip_user_data;

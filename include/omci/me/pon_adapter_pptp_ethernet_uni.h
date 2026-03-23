@@ -1,5 +1,6 @@
 /******************************************************************************
  *
+ *  Copyright (c) 2020 - 2026 MaxLinear, Inc.
  *  Copyright (c) 2017 - 2020 Intel Corporation
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
@@ -211,12 +212,14 @@ struct pa_pptp_eth_uni_ops {
 	 *
 	 * \param[in] ll_handle            Lower layer context pointer
 	 * \param[in] me_id                Managed Entity identifier
+	 * \param[out] available           Pointer to availability flag
 	 *
 	 * \return Return value as follows:
-	 * - True: If successful
-	 * - False: In case of error.
+	 * - PON_ADAPTER_SUCCESS: If successful
+	 * - Other: An error code in case of error.
 	 */
-	bool (*lan_is_available)(void *ll_handle, uint16_t me_id);
+	enum pon_adapter_errno (*lan_is_available)(void *ll_handle,
+		   uint16_t me_id, bool *available);
 
 	/** Enable Managed Entity identifier mapping to driver index
 	 *  and initialize corresponding driver structures

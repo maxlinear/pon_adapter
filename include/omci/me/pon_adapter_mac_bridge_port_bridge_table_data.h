@@ -1,5 +1,6 @@
 /******************************************************************************
  *
+ *  Copyright (c) 2026 MaxLinear, Inc.
  *  Copyright (c) 2017 - 2019 Intel Corporation
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
@@ -109,7 +110,7 @@ struct pa_mac_bp_bridge_table_data_ops {
 	 *  \param[out] entry_num	Number of entries pointed to by entries
 	 *  \param[out] entries		The pointer to the first entry
 	 */
-	void (*free)(
+	enum pon_adapter_errno (*free)(
 		void *ll_handle,
 		uint16_t me_id,
 		uint16_t bridge_me_id,

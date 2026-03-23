@@ -1,5 +1,6 @@
 /******************************************************************************
  *
+ *  Copyright (c) 2022 - 2026 MaxLinear, Inc.
  *  Copyright (c) 2017 - 2019 Intel Corporation
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
@@ -79,6 +80,16 @@ enum pon_adapter_ani_g_alarm {
 	 * laser end of life pending
 	 */
 	PA_ALARM_ID_ANIG_LASER_BIAS_CURRENT = 6
+};
+
+/** ANI-G dba piggyback reporting modes */
+enum pon_adapter_ani_g_dba_mode {
+	/** DBA piggyback mode 0 only */
+	PA_ANIG_DBA_PB_MODE_0_ONLY = 0,
+	/** DBA piggyback reporting modes 0 and 1 */
+	PA_ANIG_DBA_PB_MODE_0_1 = 1,
+	/** DBA piggyback not supported */
+	PA_ANIG_DBA_PB_MODE_NOT_SUPPORTED = 4
 };
 
 /** ANI-G attribute handling operations structure */

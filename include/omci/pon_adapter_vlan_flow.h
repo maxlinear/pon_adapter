@@ -16,7 +16,9 @@
 #ifndef _pon_adapter_vlan_flow_data
 #define _pon_adapter_vlan_flow_data
 
+#if !defined(__PA_RUST__)
 #include <net/if.h>
+#endif
 
 #include "pon_adapter_base.h"
 #include "pon_adapter_errno.h"

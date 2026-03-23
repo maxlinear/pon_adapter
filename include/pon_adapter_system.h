@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- *  Copyright (c) 2021 - 2022 MaxLinear, Inc.
+ *  Copyright (c) 2021 - 2025 MaxLinear, Inc.
  *  Copyright (c) 2017 - 2019 Intel Corporation
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
@@ -71,7 +71,8 @@ struct pa_system_ops {
 	 * \param[in] ll_handle		Lower layer context pointer
 	 * \param[in] timeout_ms	Reboot in timeout_ms (in ms)
 	 */
-	enum pon_adapter_errno (*reboot)(void *ll_handle, time_t timeout_ms);
+	enum pon_adapter_errno (*reboot)(void *ll_handle,
+					 unsigned long timeout_ms);
 	/** Terminate device.
 	 *  To be called once.
 	 *

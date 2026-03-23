@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- * Copyright (c) 2020 - 2022 MaxLinear, Inc.
+ * Copyright (c) 2020 - 2026 MaxLinear, Inc.
  * Copyright (c) 2017 - 2019 Intel Corporation
  *
  * For licensing information, see the file 'LICENSE' in the root folder of
@@ -40,7 +40,7 @@ extern "C" {
  */
 
 /** PON-Adapter Interface (PA IF) version - Interface revision */
-#define PA_IF_VERSION_REVISION		2
+#define PA_IF_VERSION_REVISION		3
 /** PA IF version - feature
  * Feature enhancements which are backwards compatible to older OMCI-daemon
  * binaries of the same revision
@@ -176,9 +176,11 @@ struct pa_ll_dbg_lvl_ops {
  */
 struct pa_system_cap_ops {
 	/** Get maximum number of supported Bridge Ports */
-	unsigned int(*get_bridgeports)(void *ll_handle);
+	enum pon_adapter_errno(*get_bridgeports)(void *ll_handle,
+						  uint32_t *bridgeports_num);
 	/** Get maximum number of supported UNI (LAN) ports */
-	unsigned int(*get_lanports)(void *ll_handle);
+	enum pon_adapter_errno(*get_lanports)(void *ll_handle,
+						uint32_t *lanports_num);
 	/** Get an 8 byte size Serial Number */
 	enum pon_adapter_errno (*get_serial_number)(void *ll_handle,
 						    uint8_t *serial_number);
@@ -242,8 +244,17 @@ enum pa_pon_op_mode {
 
 /** System status functions */
 struct pa_system_status_ops {
-	/** Get PON Operational Mode */
-	enum pa_pon_op_mode(*get_pon_op_mode)(void *ll_handle);
+	/** Get PON Operational Mode
+	 *
+	 * \param[in]   ll_handle	Lower layer context pointer
+	 * \param[out]  mode		PON Operational Mode
+	 *
+	 * \return Return value as follows:
+	 * - PON_ADAPTER_SUCCESS: If successful
+	 * - Other: An error code in case of error.
+	 */
+	enum pon_adapter_errno (*get_pon_op_mode)(void *ll_handle,
+						   enum pa_pon_op_mode *mode);
 
 	/** Callback to inform about PON FW alarm
 	 *
